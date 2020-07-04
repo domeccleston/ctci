@@ -1,0 +1,18 @@
+DATA STRUCTURES
+    - arrays and strings [x]
+    - linked lists [ ]
+    - stacks and queues [ ]
+    - trees and graphs [ ]
+
+ALGORITHMS
+    - bit manipulation [ ]
+    - math and logic puzzles [ ]
+    - OO design [ ]
+    - recursion and dynamic programming [ ]
+    - system design and scalability [ ]
+    - sorting and searching [ ]
+    - testing [ ]
+
+ADDITIONAL TOPICS
+ADDITIONAL PROBLEMS
+ADVANCED TOPICS
