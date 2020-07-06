@@ -25,33 +25,46 @@ class LinkedList:
         self.length += 1
     
     def remove_kth_from_last(self, node, k):
+        # todo handle head removal
+        # todo handle
         node_map = {}
         count = 0
         current = node
         prev = None
-        print(k)
+
+        def print_nm():
+            for i, (k, v) in enumerate(node_map.items()):
+                print(k, v)
+            print('\n')
 
         while current is not None:
+            print_nm()
             node_map[count] = (current, prev)
             prev = current
             current = current.next
             count += 1
         
-        for i, (key, val) in enumerate(node_map.items()):
-            print(key, val)
+        to_delete = count - k
 
-        to_delete = count - k - 1
+        if not to_delete in node_map:
+            raise ValueError("Please enter a positive integer less than the length of the linked list.")
+        # handle head removal
+        if node_map[to_delete][0] == self.head:
+            self.head = node_map[to_delete][0].next
+            node_map[to_delete][0].next = None
 
-        node_map[to_delete][1].next = node_map[to_delete][0].next
+        else:
+            node_map[to_delete][1].next = node_map[to_delete][0].next
 
+        self.length -= 1
         return self
 
 
 ll = LinkedList(1)
-
 ll.add_to_tail(2)
 ll.add_to_tail(3)
 ll.add_to_tail(4)
 ll.add_to_tail(5)
 ll.add_to_tail(6)
-print(ll.remove_kth_from_last(ll.head, 3))
+print(ll)
+print(ll.remove_kth_from_last(ll.head, 7))
