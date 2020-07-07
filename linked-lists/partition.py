@@ -40,8 +40,9 @@ class LinkedList:
             p = p.next
         p.next = new_tail
         self.length += 1
+        return new_tail
 
-    def partition(self, value):
+    def partition(self, node, value):
         # lower = linkedlist
         # upper = linkedlist
         # iterate through list
@@ -49,3 +50,36 @@ class LinkedList:
         # if item is equal to or greater than pivor, add to higher
         # connect tail of lower to head of higher
         # set head of list
+        lower = LinkedList()
+        upper = LinkedList()
+        lower_tail = None
+
+        p = node
+        while p is not None:
+            if p.data < value:
+                lower_tail = lower.add_to_tail(p.data)
+                if lower.head.data is None:
+                    lower.head = lower.head.next
+            else:
+                upper.add_to_tail(p.data)
+                if upper.head.data is None:
+                    upper.head = upper.head.next
+            p = p.next
+
+        if upper.length == 0:
+            return lower
+        if lower.length == 0:
+            return upper
+        if lower.head.data is not None:
+            lower_tail.next = upper.head   
+            return lower
+
+        
+ll = LinkedList(3)
+ll.add_to_tail(5)
+ll.add_to_tail(8)
+ll.add_to_tail(5)
+ll.add_to_tail(10)
+ll.add_to_tail(2)
+ll.add_to_tail(1)
+print(ll.partition1(ll.head, 5))
