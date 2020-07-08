@@ -51,8 +51,6 @@ EXAMPLE
 Input:(6 -> 1 -> 7) + (2 -> 9 -> 5). That is, 617 + 295. Output: 9 -> 1 -> 2. That is, 912.
 """
 
-import unittest
-
 class Node:
     def __init__(self, data=None):
         self.data = data
@@ -79,6 +77,7 @@ class LinkedList:
         p.next = new_tail
         self.length += 1
 
+
 def sum_list(listA, listB):
     pA = listA.head
     pB = listB.head
@@ -89,6 +88,8 @@ def sum_list(listA, listB):
     while pA is not None and pA is not None:
         valA = pA.data
         valB = pB.data
+        if valA < 0 or valA > 9 or valB < 0 or valB > 9:
+            raise ValueError("Input must be a linked list of digits, i.e. positive integers less than 10")
         _sum = valA + valB + carry
         if len(str(_sum)) == 2:
             carry = 1
@@ -134,19 +135,24 @@ def create_list(nums):
         head.add_to_tail(nums[i])
     return head
 
+def _print_list(list):
+    s = ''
+    for i in list:
+        s += " -> "
+    return s
 
 sum1 = create_list([7, 6, 4, 2])
 sum2 = create_list([2, 5, 1, 4, 3])
-print(sum_list(sum1, sum2))
+print(sum_list(sum1, sum2)) # -> 36619
 
-# sum3 = create_list([3, 4, 2, 0, 0, 2, 1, 4])
-# sum4 = create_list([4, 8, 9, 6, 3, 2, 1, 0])
+sum3 = create_list([3, 4, 2, 0, 0, 2, 1, 4]) 
+sum4 = create_list([4, 8, 9, 6, 3, 2, 1, 0]) 
+print(sum_list(sum3, sum4)) # -> 42437227
 
-# class TestSumList(unittest.TestCase):
+sum5 = create_list([5, 4, 2, 1, 1])
+sum6 = create_list([4, 2, 9, 9, 5])
+print(sum_list(sum5, sum6))
 
-#     def test_basic(self):
-#         self.assertEqual(sum_list(sum1, sum2), '9 -> 1 -> 6 -> 6 -> 3 ->')
-
-
-# if __name__ == "__main__":
-#     unittest.main()
+sum5 = create_list([1, 0, 0,])
+sum6 = create_list([0, 0, 0, 5, 2])
+print(sum_list(sum5, sum6))
