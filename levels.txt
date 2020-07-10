@@ -1,6 +1,6 @@
 DATA STRUCTURES
     - arrays and strings [x]
-    - linked lists [ ]
+    - linked lists [x]
     - stacks and queues [ ]
     - trees and graphs [ ]
 

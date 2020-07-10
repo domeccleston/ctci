@@ -28,37 +28,22 @@ def print_list(head, s=''):
     print_list(head.next, s)
 
 def intersection(ll1: Node, ll2: Node) -> Node:
-    set1 = set()
-    set2 = set()
-    set3 = set()
+    node_set = set()
     p1 = ll1
     p2 = ll2
 
-    # while p1 is not None or p2 is not None:
-    #     if p1 is not None:
-    #         set1.add(p1)
-    #         p1 = p1.next
-    #     if p2 is not None:
-    #         set2.add(p2)
-    #         p2 = p2.next
-
     while p1 is not None or p2 is not None:
         if p1 is not None:
-            if p1 in set3:
-                return True
-            set3.add(p1)
+            if p1 in node_set:
+                return p1
+            node_set.add(p1)
             p1 = p1.next
         if p2 is not None:
-            if p2 in set3:
-                return True
-            set3.add(p2)
+            if p2 in node_set:
+                return p2
+            node_set.add(p2)
             p2 = p2.next
 
-    return False
-
-    intersect = set1.intersection(set2)
-    if len(intersect) > 0:
-        return True
     return False
 
 def intersection2(ll1: Node, ll2: Node) -> Node:
