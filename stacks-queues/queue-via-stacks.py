@@ -10,7 +10,6 @@ qvs.push(1) -> s1: [1] | s2: [1]
 qvs.push(2) -> s1: [1, 2] | s2: [2, 1]
 qvs.push(3) -> s1: [] | s2: [2, 1] -> s1: [1, 2, 3] | s2: [] -> s1: [] | s2: [3, 2, 1]
 
-
 """
 class Stack:
     def __init__(self):
@@ -40,20 +39,6 @@ class QueueViaStacks:
     def __init__(self):
         self.stack_1 = Stack()
         self.stack_2 = Stack()
-
-    """
-        - class queue_via_stacks:
-        - stack1 = Stack()
-        - stack2 = Stack()
-    - on push:
-        - if s1 is empty: s2.push(item)
-        - else:
-            - pop each item off s2, push each to s1 to get reversed s2
-            - push new item to s1
-            - pop off each item from s1 and copy over to s2 
-    - on pop:
-        - pop items from stack_2
-    """
 
     def push(self, item):
         if self.stack_2.size() == 0:

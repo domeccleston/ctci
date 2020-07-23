@@ -21,6 +21,7 @@ pseudo:
     - check head
     - if of type sought, concat temp to queue and return head
     - else, push to temp
+
 """
 
 from collections import deque
@@ -60,13 +61,74 @@ class AnimalShelter:
     def __repr__(self):
         return str(list(self.queue))
 
+class Animal:
+    def __init__(self):
+        self.order = 0
 
-a = AnimalShelter()
-a.enqueue('dog')
-a.enqueue('dog')
-a.enqueue('cat')
-a.enqueue('dog')
-a.enqueue('cat')
-print(a)
-print(a.dequeueCat())
+    def setOrder(self, order):
+        self.order = order
+
+    def isOlderThan(self, animal):
+        return self.order > animal.order
+
+class Dog(Animal):
+    def __init__(self):
+        super().__init__()
+
+class Cat(Animal):
+    def __init__(self):
+        super().__init__()
+
+class AnimalQueue:
+    def __init__(self):
+        self.dogs = deque()
+        self.cats = deque()
+        self.order = 0
+
+    def enqueue(self, animal):
+        animal.setOrder(self.order)
+        self.order += 1
+        if isinstance(animal, Cat):
+            self.cats.append(animal)
+        elif isinstance(animal, Dog):
+            self.dogs.append(animal)
+        else:
+            raise TypeError("Dogs or cats only")
+
+    def dequeueAny(self):
+        if len(dogs) == 0:
+            return self.dequeueCats()
+        elif len(cats) == 0:
+            return self.dequeueDogs()
+        
+        oldest_dog = list(dogs)[0]
+        oldest_cat = list(cats)[0]
+
+        if dog.isOlderThan(cat):
+            return dequeueDogs()
+        else:
+            return dequeueCats()
+
+    def dequeueDogs(self):
+        return self.dogs.popleft()
+
+    def dequeueCats(self):
+        return self.cats.popleft()
+
+    def __repr__(self):
+        s = ''
+        s += 'Dogs: ' + str(list(self.dogs)) + '\n'
+        s += 'Cats: ' + str(list(self.cats))
+        return s
+    
+
+
+a = AnimalQueue()
+d1 = Dog()
+c1 = Cat()
+c2 = Cat()
+a.enqueue(d1)
+a.enqueue(c1)
+a.enqueue(c2)
+print(a.dequeueDogs())
 print(a)

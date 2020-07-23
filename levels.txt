@@ -1,7 +1,7 @@
 DATA STRUCTURES
     - arrays and strings [x]
     - linked lists [x]
-    - stacks and queues [ ]
+    - stacks and queues [x]
     - trees and graphs [ ]
 
 ALGORITHMS

@@ -12,23 +12,28 @@ class Graph:
     def add_edge(self, nodeA, nodeB):
         self.vertices[nodeA].add(nodeB)
 
-    def DFS(self, start_node, target_node):
+    def DFS(self, node, visited=set()):
+        if node not in visited:
+            visited.add(node)
+            print(node)
+            for neighbour in self.vertices[node]:
+                self.DFS(neighbour, visited)
 
+    def BFS(self, node):
         visited = set()
-        steps = 0
+        queue = []
 
-        def visit(node, steps):
-            steps += 1
-            for child_node in self.vertices[node]:
-                if child_node == target_node:
-                    return f'Found node {child_node} via node {node} after {steps} steps.'
-                if node not in visited:
-                    visited.add(node)
-                    visit(node, steps)
+        queue.append(node)
+        visited.add(node)
+        
+        while queue:
+            head = queue.pop(0)
+            print(head)
 
-        visit(start_node, steps)
-
-        return f'Unable to find node {target_node} after {steps} steps, having searched through: {visited}'
+            for adjacent_node in self.vertices[node]:
+                if not adjacent_node in visited:
+                    queue.append(adjacent_node)
+                    visited.add(adjacent_node)
 
     def __repr__(self):
         return str(self.vertices)
@@ -42,4 +47,4 @@ graph.add_edge(2, 4)
 graph.add_edge(4, 2)
 graph.add_edge(4, 5)
 graph.add_edge(5, 6)
-print(graph.DFS(1, 6))
+print(graph.DFS(1))
