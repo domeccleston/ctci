@@ -42,13 +42,13 @@ def merge_sorted_arrays(arr1, arr2):
 
 
 
-test1 = [1, 3, 4, 5]
-test2 = [2, 4, 6, 8]
+test1 = [1, 2, 4, 5]
+test2 = [10, 20]
 test11 = [1, 3, 4, 5, 6, 8, 9, 14, 15, 16, 23]
 test22 = [0, 2, 5, 7, 7, 7, 8, 9, 16, 17, 20]
 
 
-print(merge_sorted_arrays(test11, test22)) # 1 -> 2
+print(merge_sorted_arrays(test1, test2)) # 1 -> 2
 
 # iterate arrays
 # if array1[idx] < array2[idx] and array1[idx] < array1[idx + 1]
