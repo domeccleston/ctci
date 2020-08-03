@@ -10,7 +10,23 @@ Example 2:
 
 Given nums = [0,0,1,1,1,2,2,3,3,4], your function should return length = 5, with the first five elements of nums being modified to 0, 1, 2, 3, and 4 respectively.
 
+[0,0,1,1,1,2,2,3,3,4]
+
 
 [1, 1, 2] -> [1, 2]
 """
 
+def remove_duplicates(nums: list) -> int:
+
+    for i in range(len(nums) - 1, 0, -1):
+        for j in range(i - 1, -1, -1):
+            if nums[j] == nums[i]:
+                del nums[j]
+
+    return nums
+
+test1 = [1, 1, 2]
+test2 = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
+
+
+print(remove_duplicates(test2))
