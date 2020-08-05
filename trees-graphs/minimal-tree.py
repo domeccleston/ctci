@@ -77,38 +77,60 @@ class Node:
     self.right = None
     self.data = data
 
-  def print_tree(self):
-    print(self.data)
+  def print_tree(self, level=0):
     if self.left:
-      self.left.print_tree()
+      self.left.print_tree(level+1)
+    print(f'level: {level}, {self.data}')
     if self.right:
-      self.right.print_tree()
+      self.right.print_tree(level+1)
+
+  def insert_node(self, node):
+    if node.data > self.data:
+      if self.right is None:
+        self.right = node
+      else:
+        self.right.insert_node(node)
+    elif node.data < self.data:
+      if self.left is None:
+        self.left = node
+      else:
+        self.left.insert_node(node)
 
   def insert(self, data):
-    if self.data:
-      if data > self.data:
-        if self.right is None:
-          self.right = Node(data)
-        else:
-          self.right.insert(data)
-      elif data < self.data:
-        if self.left is None:
-          self.left = Node(data)
-        else:
-          self.left.insert(data)
+    if isinstance(data, Node):
+      self.insert_node(data)
+
     else:
-      self.data = data
+      if self.data:
+        if data > self.data:
+          if self.right is None:
+            self.right = Node(data)
+          else:
+            self.right.insert(data)
+        elif data < self.data:
+          if self.left is None:
+            self.left = Node(data)
+          else:
+            self.left.insert(data)
+      else:
+        self.data = data
 
 def middle_element(arr):
   return (len(arr) - 1) // 2
 
-def minimal_tree(arr: list, parent=None) -> Node:
+def minimal_tree(arr: list) -> Node:
   index = middle_element(arr)
   left = arr[:index]
   right = arr[index + 1:]
 
-  if len(left) == 0 or len(right) == 0:
+  if len(arr) == 2:
+    parent = Node(arr[0])
+    parent.insert(arr[1])
+    return parent
+
+  if len(left) == 0 and len(right) == 0:
     return arr[index]
+
   else:
     root = Node(arr[index])
     root.insert(minimal_tree(left))
@@ -116,13 +138,10 @@ def minimal_tree(arr: list, parent=None) -> Node:
 
   return root
 
-  # left_subtree = minimal_tree(left, root)
-  # root.print_tree()
-  # left_subtree.print_tree()
-
 test0 = [1, 2, 3]
-test1 = [1, 2, 3, 4, 5, 6]
+test1 = [1, 2, 3, 4, 5, 6, 7]
 test2 = [2, 4, 5, 7, 9, 10, 15, 31]
+test3 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
 
-tree = minimal_tree(test1)
+tree = minimal_tree(test3)
 tree.print_tree()
