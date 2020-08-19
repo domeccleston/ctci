@@ -19,3 +19,5 @@ def list_of_depths(node: TreeNode) -> ListNode[]:
     - push the linked list the listlist
     - finally return the listlist
   """
+
+  

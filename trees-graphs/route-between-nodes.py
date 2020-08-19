@@ -28,8 +28,10 @@ class Graph:
         
         while queue:
             head = queue.pop(0)
+            # visiting should happen here
             print(head)
 
+            # below should be self.vertices[head]
             for adjacent_node in self.vertices[node]:
                 if not adjacent_node in visited:
                     queue.append(adjacent_node)
